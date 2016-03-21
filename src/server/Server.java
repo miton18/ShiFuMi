@@ -22,6 +22,7 @@ public class Server {
                 int my     = Math.abs( rand.nextInt()) % 3;
 
                 res.put( "win", matrix[choice][my] );
+                res.put( "server", my );
 
                 return res;
             });
