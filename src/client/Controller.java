@@ -1,9 +1,12 @@
-import java.awt.*;   
+package client;
+
+import java.awt.*;
 import java.awt.event.*;
 import java.net.InetAddress;
 import java.util.*;
 import socket.CSocket;
-   
+import socket.JSONObject;
+
 public class Controller implements ActionListener {
    
    // Le bouton sur lequel a clique le joueur
@@ -113,7 +116,7 @@ public class Controller implements ActionListener {
    // Méthode pour tirage au hasard du choix de l'orinateur
    // Retourne une chaine de caractères : "papier", "pierre" ou "ciseaux"
    public String choixAleatoire() {
-      /**
+
       int min = 1;
       int max = 3;
       String choix = null;
@@ -128,14 +131,23 @@ public class Controller implements ActionListener {
             break;
          case 3:
             choix = new String("Ciseaux");      
-      }*/
+      }
+      return(choix);
+   }
+
+   public boolean getResponse( String choixJoueur ) {
+
       try {
          CSocket socket = new CSocket( InetAddress.getByName("127.0.0.1"), 443 );
+
+         JSONObject req = JSONObject();
+
+         JSONObject res = socket.emit("It's your turn", "");
       }
-      catch (Exception e) {}
+      catch (Exception e) {
 
-
-      return(choix);
+         System.out.println("");
+      }
    }
 
 }

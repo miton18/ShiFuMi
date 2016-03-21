@@ -1,3 +1,5 @@
+package client;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -6,7 +8,7 @@ import layout.*;
 public class Interface {
    
    // Les attributs sont "static" pour simplifier...
-   // pas besoin de référence à un objet "Interface" coté Controller"
+   // pas besoin de rï¿½fï¿½rence ï¿½ un objet "Interface" cotï¿½ Controller"
    public static JFrame maFenetre;
    public static JLabel maReponse;
    public static JLabel ordiReponse;
@@ -24,14 +26,14 @@ public class Interface {
    
    Interface(Controller control) {
                
-      // Création de maFenetre (Fenêtre principale)
+      // Crï¿½ation de maFenetre (Fenï¿½tre principale)
       maFenetre = new JFrame("Papier-Pierre-Ciseaux");
       maFenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       maFenetre.setBounds (100, 100, 1000, 560);
       maFenetre.getContentPane().setBackground (Color.WHITE);
       maFenetre.setResizable(false);
       
-      // Création d'un TableLayout pour maFenetre
+      // Crï¿½ation d'un TableLayout pour maFenetre
       double border = 5;
       double size[ ][ ] = { 
          {border, 300, TableLayout.FILL, 300, border},  // Columns
@@ -49,10 +51,10 @@ public class Interface {
       JButton papier = new JButton("Papier", iconePapier);
       JButton pierre = new JButton("Pierre", iconePierre);        
       JButton ciseaux = new JButton("Ciseaux", iconeCiseaux);
-      JButton reset = new JButton("Réinitialiser");      
+      JButton reset = new JButton("Rï¿½initialiser");      
       JButton quitter = new JButton("Quitter");
        
-      // C'est la classe "Controller" qui implémente l'interface "ActionListener"
+      // C'est la classe "Controller" qui implï¿½mente l'interface "ActionListener"
       papier.addActionListener(control);
       pierre.addActionListener(control);
       ciseaux.addActionListener(control);
