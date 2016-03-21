@@ -16,7 +16,7 @@ public class Server {
                 { 1, -1, 0 }
             };
 
-            sSocket.on( "it's your turn", req -> {
+            sSocket.on( "It's your turn", req -> {
                 Logger.getGlobal().log( Level.INFO, "Receive : " + req.toString());
 
                 JSONObject res = new JSONObject();
