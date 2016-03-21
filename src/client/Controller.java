@@ -3,7 +3,6 @@ package client;
 import java.awt.*;
 import java.awt.event.*;
 import java.net.InetAddress;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,20 +20,6 @@ public class Controller implements ActionListener {
    private int serverChoice;
    private int hasWin;
    private int jeuJoueur;
-   
-   /* 
-   Toute l'intelligence du jeu est dans le tableau suivant
-     Tableau donnant les gains du joueur
-     Les indices des lignes correspondent aux choix du joueur, 
-      respectivement : 0 pour papier, 1 pour pierre, 2 pour ciseaux
-     Les indices des colonnes correspondent aux choix de l'ordinateur,
-      respectivement : 0 pour papier, 1 pour pierre, 2 pour ciseaux
-   */      
-   /*private int gains[][] = {
-      { 0,  1, -1},
-      {-1,  0,  1},      
-      { 1, -1,  0}
-   };*/
    
    // le constructeur
    public Controller() {
@@ -80,6 +65,7 @@ public class Controller implements ActionListener {
                Interface.maReponse.setIcon(Interface.iconeCiseaux);      
          }
 
+         // Récupère la réponse su serveur
          choixServeur();
 
          // Modification dans l'interface selon les choix de l'ordinateur
@@ -118,29 +104,11 @@ public class Controller implements ActionListener {
       Logger.getGlobal().log( Level.INFO, "Choix ordinateur   : " + this.serverChoice + " " + this.choix + "\n" );
       
    }
-   
-   // Méthode pour tirage au hasard du choix de l'orinateur
-   // Retourne une chaine de caractères : "papier", "pierre" ou "ciseaux"
-   public String choixAleatoire() {
 
-      int min = 1;
-      int max = 3;
-      String choix = null;
-      Random rand = new Random();
-      int nombreAleatoire = rand.nextInt(max - min + 1) + min;
-      switch (nombreAleatoire) {
-         case 1:
-            choix = new String("Pierre");
-            break;
-         case 2:
-            choix = new String("Papier");
-            break;
-         case 3:
-            choix = new String("Ciseaux");      
-      }
-      return(choix);
-   }
-
+   /**
+    * Implémente serverChoice et has win en fonction de la réponse du serveur,
+    * au coup jourer par le joueur.
+    */
    public void choixServeur() {
 
       try {
@@ -160,5 +128,4 @@ public class Controller implements ActionListener {
          Logger.getGlobal().log( Level.SEVERE, e.getMessage() );
       }
    }
-
 }
