@@ -140,7 +140,7 @@ public class Controller implements ActionListener {
       try {
          CSocket socket = new CSocket( InetAddress.getByName("127.0.0.1"), 443 );
 
-         JSONObject req = JSONObject();
+         JSONObject req = new JSONObject();
 
          JSONObject res = socket.emit("It's your turn", "");
       }
