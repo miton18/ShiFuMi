@@ -165,6 +165,8 @@ public class Controller implements ActionListener {
 
          this.serverChoice = res.getString("server");
          this.hasWin       = Integer.parseInt( res.getString("win") );
+         System.out.println( "Serveur: choix(" + this.serverChoice + ") win: " + Integer.toString(this.hasWin) );
+         return;
       }
       catch (Exception e) {
 
