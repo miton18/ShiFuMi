@@ -51,7 +51,7 @@ public class Interface {
       JButton papier = new JButton("Papier", iconePapier);
       JButton pierre = new JButton("Pierre", iconePierre);        
       JButton ciseaux = new JButton("Ciseaux", iconeCiseaux);
-      JButton reset = new JButton("R�initialiser");      
+      JButton reset = new JButton("Réinitialiser");
       JButton quitter = new JButton("Quitter");
        
       // C'est la classe "Controller" qui impl�mente l'interface "ActionListener"

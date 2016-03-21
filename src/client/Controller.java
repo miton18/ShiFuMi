@@ -65,13 +65,6 @@ public class Controller implements ActionListener {
       // Le traitement des choix joueur et ordinateur...
       else {
 
-
-
-
-
-         // Choix aléatoire coté ordinateur
-         //this.choix = choixAleatoire();
-
          // Modification dans l'interface selon les choix du joueur
          switch (this.commande) {
             case "Papier":
@@ -121,8 +114,8 @@ public class Controller implements ActionListener {
          }
       }
       // pour vérifier, debug...
-      System.out.println("Choix joueur       : "+jeuJoueur+" "+this.commande);
-      System.out.println("Choix ordinateur   : "+ this.serverChoice +" "+this.choix+"\n");
+      Logger.getGlobal().log( Level.INFO, "Choix joueur       : " + jeuJoueur + " " + this.commande );
+      Logger.getGlobal().log( Level.INFO, "Choix ordinateur   : " + this.serverChoice + " " + this.choix + "\n" );
       
    }
    
@@ -160,7 +153,6 @@ public class Controller implements ActionListener {
 
          this.serverChoice = res.getInt("server");
          this.hasWin       = res.getInt("win");
-         System.out.println( "Serveur: choix(" + this.serverChoice + ") win: " + Integer.toString(this.hasWin) );
          return;
       }
       catch (Exception e) {
