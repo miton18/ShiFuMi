@@ -18,7 +18,7 @@ public class Controller implements ActionListener {
    // le choix de l'ordinateur
    // "papier", "pierre" ou "ciseaux"
    private String choix;
-   private String serverChoice;
+   private int serverChoice;
    private int hasWin;
    private int jeuJoueur;
    
@@ -46,8 +46,7 @@ public class Controller implements ActionListener {
    // Le traitement des actions du joueur
    public void actionPerformed(ActionEvent e) {
       
-      int jeuJoueur = 0;
-      int jeuOrdi = 0;
+      this.jeuJoueur = 0;
       
       this.commande = e.getActionCommand();
    
@@ -91,17 +90,14 @@ public class Controller implements ActionListener {
          choixServeur();
 
          // Modification dans l'interface selon les choix de l'ordinateur
-         switch (this.choix) {            
-            case "Papier":
-               jeuOrdi = 0;
+         switch (this.serverChoice ) {
+            case 0:
                Interface.ordiReponse.setIcon(Interface.iconePapier);
                break;
-            case "Pierre":
-               jeuOrdi = 1;
+            case 1:
                Interface.ordiReponse.setIcon(Interface.iconePierre);
                break;
-            case "Ciseaux":
-               jeuOrdi = 2;
+            case 2:
                Interface.ordiReponse.setIcon(Interface.iconeCiseaux);      
          }
 
@@ -126,7 +122,7 @@ public class Controller implements ActionListener {
       }
       // pour vérifier, debug...
       System.out.println("Choix joueur       : "+jeuJoueur+" "+this.commande);
-      System.out.println("Choix ordinateur   : "+jeuOrdi+" "+this.choix+"\n");
+      System.out.println("Choix ordinateur   : "+ this.serverChoice +" "+this.choix+"\n");
       
    }
    
@@ -155,15 +151,15 @@ public class Controller implements ActionListener {
    public void choixServeur() {
 
       try {
-         CSocket socket = new CSocket( InetAddress.getByName("127.0.0.1"), 443 );
+         CSocket socket = new CSocket( InetAddress.getByName("127.0.0.1"), 4430 );
 
          JSONObject req = new JSONObject();
          req.put("choix", this.jeuJoueur);
 
          JSONObject res = socket.emit("It's your turn", req);
 
-         this.serverChoice = res.getString("server");
-         this.hasWin       = Integer.parseInt( res.getString("win") );
+         this.serverChoice = res.getInt("server");
+         this.hasWin       = res.getInt("win");
          System.out.println( "Serveur: choix(" + this.serverChoice + ") win: " + Integer.toString(this.hasWin) );
          return;
       }
