@@ -7,15 +7,18 @@ import java.util.logging.Logger;
 public class Server {
     public static void main( String[] arguments ) {
         try {
-            SSocket sSocket = new SSocket( 443 );
-            Random rand = new Random();
-            int matrix[][] = {
+            SSocket sSocket = new SSocket( 4430 );
+            Random rand     = new Random();
+
+            int matrix[][]  = {
                 { 0, 1, -1 },
                 { -1, 0, 1 },
                 { 1, -1, 0 }
             };
 
             sSocket.on( "it's your turn", req -> {
+                Logger.getGlobal().log( Level.INFO, "Receive : " + req.toString());
+
                 JSONObject res = new JSONObject();
 
                 int choice = req.getInt( "choix" );
@@ -23,6 +26,8 @@ public class Server {
 
                 res.put( "win", matrix[choice][my] );
                 res.put( "server", my );
+
+                Logger.getGlobal().log( Level.INFO, "Send : " + res.toString());
 
                 return res;
             });

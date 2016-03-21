@@ -157,6 +157,7 @@ public class Controller implements ActionListener {
          req.put("choix", this.jeuJoueur);
 
          JSONObject res = socket.emit("It's your turn", req);
+>>>>>>> deb1a4281735d90c10b292460a3f6534563da18d
 
          this.serverChoice = res.getInt("server");
          this.hasWin       = res.getInt("win");
