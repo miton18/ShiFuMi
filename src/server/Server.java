@@ -16,6 +16,7 @@ public class Server {
                 { 1, -1, 0 }
             };
 
+            // magic in action
             sSocket.on( "It's your turn", req -> {
                 Logger.getGlobal().log( Level.INFO, "Receive : " + req.toString());
 
