@@ -1,10 +1,12 @@
 import java.awt.*;   
 import java.awt.event.*;
+import java.net.InetAddress;
 import java.util.*;
+import socket.CSocket;
    
 public class Controller implements ActionListener {
    
-   // Le bouton sur lequel a cliqué le joueur
+   // Le bouton sur lequel a clique le joueur
    private String commande;
    
    // le choix de l'ordinateur
@@ -26,7 +28,7 @@ public class Controller implements ActionListener {
    };
    
    // le constructeur
-   Controller() {
+   public Controller() {
       super();
       this.commande = new String("");
       this.choix = new String("");
@@ -43,7 +45,7 @@ public class Controller implements ActionListener {
       if (this.commande.equals("Quitter")) {
          System.exit(0);
       }
-      else if (this.commande.equals("Réinitialiser")) {
+      else if (this.commande.equals("RÃ©initialiser")) {
          Interface.gainJoueur = 0;
          Interface.gainOrdi = 0;
          Interface.maReponse.setIcon(Interface.iconeVierge);
@@ -54,7 +56,7 @@ public class Controller implements ActionListener {
       }
       // Le traitement des choix joueur et ordinateur...
       else {
-         // Choix aléatoire coté ordinateur
+         // Choix alÃ©atoire cotÃ© ordinateur
          this.choix = choixAleatoire();
          // Modification dans l'interface selon les choix du joueur
          switch (this.commande) {
@@ -84,7 +86,7 @@ public class Controller implements ActionListener {
                jeuOrdi = 2;
                Interface.ordiReponse.setIcon(Interface.iconeCiseaux);      
          }
-         // Traitement du résultat
+         // Traitement du rÃ©sultat
          // Joueur gagne
          if (this.gains[jeuJoueur][jeuOrdi]>0) {
             Interface.gainJoueur++;
@@ -102,15 +104,16 @@ public class Controller implements ActionListener {
             Interface.maFenetre.getContentPane().setBackground (Color.WHITE);
          }
       }
-      // pour vérifier, debug...
+      // pour vÃ©rifier, debug...
       System.out.println("Choix joueur       : "+jeuJoueur+" "+this.commande);
       System.out.println("Choix ordinateur   : "+jeuOrdi+" "+this.choix+"\n");
       
    }
    
-   // Méthode pour tirage au hasard du choix de l'orinateur
-   // Retourne une chaine de caractères : "papier", "pierre" ou "ciseaux" 
+   // MÃ©thode pour tirage au hasard du choix de l'orinateur
+   // Retourne une chaine de caractÃ¨res : "papier", "pierre" ou "ciseaux"
    public String choixAleatoire() {
+      /**
       int min = 1;
       int max = 3;
       String choix = null;
@@ -125,7 +128,13 @@ public class Controller implements ActionListener {
             break;
          case 3:
             choix = new String("Ciseaux");      
+      }*/
+      try {
+         CSocket socket = new CSocket( InetAddress.getByName("127.0.0.1"), 443 );
       }
+      catch (Exception e) {}
+
+
       return(choix);
    }
 
